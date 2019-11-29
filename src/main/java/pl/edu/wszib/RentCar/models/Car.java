@@ -7,7 +7,7 @@ public class Car {
     private int carId;
     private boolean rented;
 
-    public Car(String brand, String model, String carId,){
+    public Car(String brand, String model, int carId){
         this.brand = brand;
         this.model = model;
         this.carId = carId;

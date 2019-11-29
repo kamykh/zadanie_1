@@ -1,6 +1,8 @@
 package pl.edu.wszib.RentCar;
 
-import pl.edu.wszib.RentCar.gui.GUI;
+import pl.edu.wszib.RentCar.db.DBConnector;
+//mport pl.edu.wszib.RentCar.gui.GUI;
+import pl.edu.wszib.RentCar.models.Car;
 
 public class App {
     public App(){
@@ -8,6 +10,8 @@ public class App {
     }
 
     public static void main(String[] args) {
-    GUI.showMenu();
+        DBConnector.connect();
+        Car car = new Car("Ford", "Mondeo", 1);
+        DBConnector.addCar(car);
     }
 }

@@ -39,7 +39,7 @@ public class GUI {
         switch(var3){
             case 0:
 
-                //ma pokazywac auta z bazy danych
+
                 break;
             case 1:
 

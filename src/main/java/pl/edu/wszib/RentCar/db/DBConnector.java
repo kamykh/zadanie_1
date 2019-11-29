@@ -67,7 +67,12 @@ public class DBConnector {
             preparedStatement.setInt(1, givenCarId);
             int ifrented = preparedStatement.executeQuery();
 
-            while(resultSet.next()) {
+            if(ifrented == 0){
+                PreparedStatement preparedStatement = connection.prepareStatement(sql1);
+                preparedStatement.setInt(1, givenCarId);
+                preparedStatement.executeQuery();
+            }
+
 
             }
 

@@ -1,6 +1,8 @@
-package pl.edu.wszib.RentCar.gui;
+/*package pl.edu.wszib.RentCar.gui;
 
 import java.util.Scanner;
+
+import static pl.edu.wszib.RentCar.db.DBConnector.showCarInfo;
 
 public class GUI {
     public GUI{
@@ -38,7 +40,9 @@ public class GUI {
 
         switch(var3){
             case 0:
-
+                showCarInfo();
+                showMenu();
+                break;
 
                 break;
             case 1:
@@ -73,3 +77,4 @@ public class GUI {
 
 
 }
+*/

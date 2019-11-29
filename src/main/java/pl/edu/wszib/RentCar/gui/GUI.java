@@ -1,4 +1,6 @@
-/*package pl.edu.wszib.RentCar.gui;
+package pl.edu.wszib.RentCar.gui;
+
+import pl.edu.wszib.RentCar.models.Car;
 
 import java.util.Scanner;
 
@@ -47,9 +49,8 @@ public class GUI {
                 break;
             case 1:
 
-                //rentcarmenu
-                showMenu();
 
+                showMenu();
                 break;
 
             case 2:
@@ -62,19 +63,5 @@ public class GUI {
         }
     }
 
-    public static void rentMenu(){
-        System.out.println("Write car ID.");
-        Scanner scanner = new Scanner(System.in);
-        Scanner givenCarId = scanner.nextLine();
-
-        try{
-            if(car != NULL){
-                car.setRent(true);
-            }
-        } catch(NumberFormatException var3)
-
-    }
-
 
 }
-*/

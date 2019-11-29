@@ -4,6 +4,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import pl.edu.wszib.RentCar.models.Car;
 
 import java.sql.*;
+import java.util.Scanner;
 
 public class DBConnector {
     public static Connection connection = null;
@@ -57,4 +58,26 @@ public class DBConnector {
 
     }
 
+    public static void rentCar(int givenCarId) {
+            String sql0 = "SELECT rented FROM carrepo WHERE carId = ?";
+            String sql1 = "update carrepo set rented='1' where carId=?"; //tworzy zapytanie sql
+        try {
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql0);
+            preparedStatement.setInt(1, givenCarId);
+            int ifrented = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+
+            }
+
+            Car car = CarRepository.carRepository.getCar(Integer.parseInt(givenCarId));
+            if (car != null) {
+                car.setRent(true);
+            }
+        } catch (NumberFormatException var3) {
+            System.out.println("carId not correct !!");
+        }
+
+    }
 }

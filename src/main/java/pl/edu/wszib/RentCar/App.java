@@ -11,7 +11,7 @@ public class App {
 
     public static void main(String[] args) {
         DBConnector.connect();
-        Car car = new Car("Ford", "Mondeo", 1);
+        Car car = new Car("Opel", "Kadet", 33);
         //DBConnector.addCar(car);
         DBConnector.showCarInfo();
     }

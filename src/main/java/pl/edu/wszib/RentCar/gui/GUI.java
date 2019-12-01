@@ -1,15 +1,17 @@
 package pl.edu.wszib.RentCar.gui;
 
+import pl.edu.wszib.RentCar.db.DBConnector;
 import pl.edu.wszib.RentCar.models.Car;
 
 import java.util.Scanner;
 
+import static pl.edu.wszib.RentCar.db.DBConnector.*;
 import static pl.edu.wszib.RentCar.db.DBConnector.showCarInfo;
 
 public class GUI {
-    public GUI{
-    }
+    public GUI(){
 
+    }
     public static void showMenu(){
         //metoda statyczna (nie potrzeba tworzyc obiektu, mozna sie zawsze odwolac)
         System.out.println("Type number of desired action: ");
@@ -45,11 +47,9 @@ public class GUI {
                 showCarInfo();
                 showMenu();
                 break;
-
-                break;
             case 1:
 
-
+                showRentMenu();
                 showMenu();
                 break;
 
@@ -61,6 +61,13 @@ public class GUI {
             default:
                 showMenu();
         }
+    }
+
+    public static void showRentMenu(){
+        System.out.println("Type ID of car you would like to rent");
+        Scanner scanner = new Scanner(System.in);
+        int id = scanner.nextInt();
+        rentCar(id);
     }
 
 

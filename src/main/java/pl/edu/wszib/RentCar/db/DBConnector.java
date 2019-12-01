@@ -45,43 +45,58 @@ public class DBConnector {
 
             if (rs.next()) {
                 do {
-                    System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
+                    System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
                 } while (rs.next());
             } else {
                 System.out.println("No cars to rent. Buy some!");
             }
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("wywalilo showaviable");
         }
 
 
     }
 
-    public static void rentCar(int givenCarId) {
-            String sql0 = "SELECT rented FROM carrepo WHERE carId = ?";
-            String sql1 = "update carrepo set rented='1' where carId=?"; //tworzy zapytanie sql
+    public static boolean ifrented(int givenCarId) {
+        boolean result = false;
         try {
+            String sql = "SELECT rented FROM carrepo WHERE carId = ?";
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sql0);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, givenCarId);
-            int ifrented = preparedStatement.executeQuery();
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next()){ //bez tego warunku nie dalo sie prise sof
+                result = rs.getBoolean(1);
+            }
+            else {
+                System.out.println("No car with this ID");
+            }
 
-            if(ifrented == 0){
-                PreparedStatement preparedStatement = connection.prepareStatement(sql1);
+        } catch (SQLException var3) {
+            var3.printStackTrace();
+            System.out.println("wywalilo ifrented");
+        }
+        return result;
+    }
+
+    public static void rentCar(int givenCarId) {
+        String sql = "UPDATE carrepo SET rented='1' WHERE carId= ?"; //tworzy zapytanie sql
+        try {
+            if (ifrented(givenCarId) == false) {
+                System.out.println(ifrented(givenCarId));
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setInt(1, givenCarId);
-                preparedStatement.executeQuery();
+                preparedStatement.executeUpdate();
+                System.out.println("You rented car " + givenCarId + "It's 100$");
+            }
+            else {
+                System.out.println("Car is not available");
             }
 
-
-            }
-
-            Car car = CarRepository.carRepository.getCar(Integer.parseInt(givenCarId));
-            if (car != null) {
-                car.setRent(true);
-            }
-        } catch (NumberFormatException var3) {
-            System.out.println("carId not correct !!");
+        } catch (NumberFormatException | SQLException e) {
+            System.out.println(e);
+            System.out.println("wywalilo renCar");
         }
 
     }
